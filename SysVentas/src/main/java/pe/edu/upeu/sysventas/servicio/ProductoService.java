@@ -1,8 +1,10 @@
 package pe.edu.upeu.sysventas.servicio;
 
-import java.awt.List;
-import java.util.ArrayList;
+//import java.awt.List;
+import java.util.*;
+//import java.util.logging.Logger;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,7 @@ import pe.edu.upeu.sysventas.repositorio.ProductoRepository;
 @Service
 public class ProductoService {
 
-    private static final Logger logger
-            = LoggerFactory.getLogger(ProductoService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProductoService.class);
     @Autowired
     ProductoRepository productoRepository;
     // Create 
@@ -24,7 +25,7 @@ public class ProductoService {
     }
     // Report 
 
-    public List<Producto> listarEntidad() {
+    public java.util.List<Producto> listarEntidad() {
         return productoRepository.findAll();
     }
     // Update 
@@ -42,7 +43,7 @@ public class ProductoService {
     public Producto buscarProducto(Long idProducto) {
         return productoRepository.findById(idProducto).orElse(null);
     }
-
+/*
     public List<ModeloDataAutocomplet> listAutoCompletProducto(String nombre) {
         List<ModeloDataAutocomplet> listarProducto = new ArrayList<>();
         try {
@@ -77,4 +78,5 @@ public class ProductoService {
         }
         return listarProducto;
     }
-}
+
+ */    }

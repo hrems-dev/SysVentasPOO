@@ -1,13 +1,7 @@
 package pe.edu.upeu.sysventas.modelo;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,10 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor 
 @Data 
 @Entity 
-@Table(name = "upeu_comp_carrito") 
+@Table(name = "upeu_comp_carrito")
 
 public class CarritoCompra {
-    @Id 
+    @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY) 
  @Column(name = "id_compcarrito") 
  private Long idCompCarrito; 

@@ -1,11 +1,6 @@
 package pe.edu.upeu.sysventas.modelo;
 
-import org.springframework.data.annotation.Id;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor 
 @Data 
 @Entity 
-@Table(name = "upeu_proveedor") 
+//@Table(name = "upeu_proveedor")
 public class Proveedor {
 @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY) 

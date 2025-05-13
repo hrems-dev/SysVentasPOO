@@ -1,22 +1,20 @@
 package pe.edu.upeu.sysventas.modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 @Builder 
 @NoArgsConstructor 
 @AllArgsConstructor 
 @Data 
 @Entity 
-@Table(name = "upeu_emisor") 
+@Table(name = "upeu_emisor")
 public class Emisor {
-@Id 
+@Id
  @GeneratedValue(strategy = GenerationType.IDENTITY) 
  @Column(name = "id_emisor") 
  private Long idEmisor; 

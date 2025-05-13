@@ -1,6 +1,7 @@
 package pe.edu.upeu.sysventas.modelo;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity 
 @Table(name = "upeu_cliente")
 public class Cliente {
-@Id
+ @Id
  @Column(name = "dniruc", nullable = false, length = 12) 
  private String dniruc; 
  @Column(name = "nombres", nullable = false, length = 160) 

@@ -1,14 +1,9 @@
 package pe.edu.upeu.sysventas.modelo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,9 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor 
 @Data 
 @Entity 
-@Table(name = "upeu_venta") 
+@Table(name = "upeu_venta")
 public class Venta {
-    @Id 
+    @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY) 
  @Column(name = "id_venta") 
  private Long idVenta; 
@@ -43,7 +38,7 @@ public class Venta {
  private Usuario usuario; 
  @Column(name = "num_doc", nullable = false, length = 20) 
  private String numDoc; 
- @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
+ //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
  @Column(name = "fecha_gener", nullable = false) 
  private LocalDateTime fechaGener; 
  @Column(name = "serie", nullable = false, length = 20) 
@@ -52,5 +47,5 @@ public class Venta {
  private String tipoDoc; 
  @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval 
 = true) 
- private List<VentaDetalle> ventaDetalles; 
+ private List<VentaDetalle> ventaDetalles;
 }
