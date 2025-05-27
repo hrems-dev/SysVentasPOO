@@ -1,70 +1,50 @@
 package pe.edu.upeu.sysventas.servicio;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Service;
-
 import pe.edu.upeu.sysventas.dto.ModeloDataAutocomplet;
+import pe.edu.upeu.sysventas.modelo.Categoria;
 import pe.edu.upeu.sysventas.modelo.Cliente;
+import pe.edu.upeu.sysventas.repositorio.CategoriaRepository;
 import pe.edu.upeu.sysventas.repositorio.ClienteRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ClienteService {
-
-    private static final Logger logger = LoggerFactory.getLogger(ClienteService.class);
-
     @Autowired
-    ClienteRepository repo;
-   // Logger logger = LoggerFactory.getLogger(ClienteService.class);
+    private ClienteRepository clienteRepository ;
 
-    //Logger logger= LoggerFactory.getLogger(ClienteService.class); 
+    Logger logger= LoggerFactory.getLogger(ClienteService.class);
+
     // Create
-    public Cliente guardarEntidad(Cliente cliente) {
-        return repo.save(cliente);
+    public Cliente guardarEntidad(Cliente to) {
+        return clienteRepository.save(to);
     }
-
     // Report
     public List<Cliente> listarEntidad() {
-        return repo.findAll();
+        return clienteRepository.findAll();
     }
-
     // Update
-    public Cliente actualizarEntidad(Cliente cliente, String dniruc) {
-        return repo.findAll(cliente);
+    public Cliente actualizarEntidad(Cliente to) {
+        return clienteRepository.save(to);
     }
-
-    public Cliente update(Cliente to, String dniruc) {
-        try {
-            Cliente toe = repo.findById(dniruc).orElse(null);
-            if (toe != null) {
-                toe.setNombres(to.getNombres());
-                return repo.save(toe);
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        return null;
-    }
-
     // Delete
-    public void eliminarRegEntidad(Long idCliente) {
-        repo.deleteById(idCliente);
+    public void eliminarRegEntidad(Long id) {
+        clienteRepository.deleteById(id);
     }
-
     // Buscar por ID
-    public Cliente buscarCliente(Long idCliente) {
-        return repo.findById(idCliente).orElse(null);
+    public Cliente buscarEntidad(Long id) {
+        return clienteRepository.findById(id).orElse(null);
     }
 
     public List<ModeloDataAutocomplet> listAutoCompletCliente() {
         List<ModeloDataAutocomplet> listarclientes = new ArrayList<>();
         try {
-            for (Cliente cliente : repo.findAll()) {
+            for (Cliente cliente : clienteRepository.findAll()) {
                 ModeloDataAutocomplet data = new ModeloDataAutocomplet();
                 data.setIdx(cliente.getDniruc());
                 data.setNameDysplay(cliente.getNombres());

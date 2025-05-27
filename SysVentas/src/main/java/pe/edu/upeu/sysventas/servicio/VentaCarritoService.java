@@ -1,55 +1,52 @@
 package pe.edu.upeu.sysventas.servicio;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upeu.sysventas.modelo.CarritoVenta;
 import pe.edu.upeu.sysventas.repositorio.CarritoVentaRepository;
+import pe.edu.upeu.sysventas.repositorio.CarritoVentaRepository;
+
+import java.util.List;
 
 @Service
-public class VentaCarritoService {
+public class VentaCarritoService{
 
     @Autowired
-    CarritoVentaRepository repo;
+    private CarritoVentaRepository ventCarritoRepository;
 
-    public CarritoVenta save(CarritoVenta to) {
-        return repo.save(to);
+    // Create
+    public CarritoVenta guardarEntidad(CarritoVenta to) {
+        return ventCarritoRepository.save(to);
     }
 
-    public List<CarritoVenta> list() {
-        return repo.findAll();
+    // Report
+    public List<CarritoVenta> listarEntidad() {
+        return ventCarritoRepository.findAll();
     }
 
-    public CarritoVenta update(CarritoVenta to, Long id) {
-        try {
-            CarritoVenta toe = repo.findById(id).orElse(null);
-            if (toe != null) {
-                toe.setEstado(to.getEstado());
-                return repo.save(toe);
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        return null;
+    // Update
+    public CarritoVenta actualizarEntidad(CarritoVenta to) {
+        return ventCarritoRepository.save(to);
     }
 
-    public void delete(Long id) {
-        repo.deleteById(id);
+    // Delete
+    public void eliminarRegEntidad(Long id) {
+        ventCarritoRepository.deleteById(id);
     }
 
-    public CarritoVenta searchById(Long id) {
-        return repo.findById(id).orElse(null);
+    // Buscar por ID
+    public CarritoVenta buscarEntidad(Long id) {
+        return ventCarritoRepository.findById(id).orElse(null);
     }
 
     public List<CarritoVenta> listaCarritoCliente(String dni) {
-        return repo.listaCarritoCliente(dni);
+        return ventCarritoRepository.listaCarritoCliente(dni);
     }
 
     @Transactional
     public void deleteCarAll(String dniruc) {
-        this.repo.deleteByDniruc(dniruc);
+        ventCarritoRepository.deleteByDniruc(dniruc);
     }
+
 }

@@ -1,49 +1,42 @@
 package pe.edu.upeu.sysventas.servicio;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import pe.edu.upeu.sysventas.modelo.Perfil;
 import pe.edu.upeu.sysventas.modelo.Usuario;
+import pe.edu.upeu.sysventas.repositorio.PerfilRepository;
 import pe.edu.upeu.sysventas.repositorio.UsuarioRepository;
+
+import java.util.List;
 
 @Service
 public class UsuarioService {
 
     @Autowired
-    UsuarioRepository repo;
-
-    public Usuario save(Usuario to) {
-        return repo.save(to);
+    private UsuarioRepository usuarioRepository;
+    // Create
+    public Usuario guardarEntidad(Usuario to) {
+        return usuarioRepository.save(to);
     }
-
-    public List<Usuario> list() {
-        return repo.findAll();
+    // Report
+    public List<Usuario> listarEntidad() {
+        return usuarioRepository.findAll();
     }
-
-    public Usuario update(Usuario to, Long id) {
-        try {
-            Usuario toe = repo.findById(id).orElse(null);
-            if (toe != null) {
-                toe.setClave(to.getClave());
-                return repo.save(toe);
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        return null;
+    // Update
+    public Usuario actualizarEntidad(Usuario to) {
+        return usuarioRepository.save(to);
     }
-
-    public void delete(Long id) {
-        repo.deleteById(id);
+    // Delete
+    public void eliminarRegEntidad(Long id) {
+        usuarioRepository.deleteById(id);
     }
-
-    public Usuario searchById(Long id) {
-        return repo.findById(id).orElse(null);
+    // Buscar por ID
+    public Usuario buscarEntidad(Long id) {
+        return usuarioRepository.findById(id).orElse(null);
     }
 
     public Usuario loginUsuario(String user, String clave) {
-        return repo.loginUsuario(user, clave);
+        return usuarioRepository.loginUsuario(user, clave);
     }
+
 }

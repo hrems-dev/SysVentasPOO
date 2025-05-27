@@ -1,45 +1,40 @@
 package pe.edu.upeu.sysventas.servicio;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import pe.edu.upeu.sysventas.modelo.VentaDetalle;
 import pe.edu.upeu.sysventas.repositorio.VentaDetalleRepository;
 
+import java.util.List;
+
 @Service
-public class VentaDetalleService {
+public class VentaDetalleService{
 
     @Autowired
-    VentaDetalleRepository repo;
+    private VentaDetalleRepository ventaDetalleRepository;
 
-    public VentaDetalle save(VentaDetalle to) {
-        return repo.save(to);
+    // Create
+    public VentaDetalle guardarEntidad(VentaDetalle to) {
+        return ventaDetalleRepository.save(to);
     }
 
-    public List<VentaDetalle> list() {
-        return repo.findAll();
+    // Report
+    public List<VentaDetalle> listarEntidad() {
+        return ventaDetalleRepository.findAll();
     }
 
-    public VentaDetalle update(VentaDetalle to, Long id) {
-        try {
-            VentaDetalle toe = repo.findById(id).orElse(null);
-            if (toe != null) {
-                toe.setCantidad(to.getCantidad());
-                return repo.save(toe);
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        return null;
+    // Update
+    public VentaDetalle actualizarEntidad(VentaDetalle to) {
+        return ventaDetalleRepository.save(to);
     }
 
-    public void delete(Long id) {
-        repo.deleteById(id);
+    // Delete
+    public void eliminarRegEntidad(Long id) {
+        ventaDetalleRepository.deleteById(id);
     }
 
-    public VentaDetalle searchById(Long id) {
-        return repo.findById(id).orElse(null);
+    // Buscar por ID
+    public VentaDetalle buscarEntidad(Long id) {
+        return ventaDetalleRepository.findById(id).orElse(null);
     }
 }
