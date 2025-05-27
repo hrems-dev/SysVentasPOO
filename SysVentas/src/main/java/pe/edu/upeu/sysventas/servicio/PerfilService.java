@@ -3,30 +3,28 @@ package pe.edu.upeu.sysventas.servicio;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import pe.edu.upeu.sysventas.modelo.VentaDetalle;
-import pe.edu.upeu.sysventas.repositorio.VentaDetalleRepository;
+import pe.edu.upeu.sysventas.modelo.Perfil;
+import pe.edu.upeu.sysventas.repositorio.PerfilRepository;
 
-@Service
-public class VentaDetalleService {
+public class PerfilService {
 
     @Autowired
-    VentaDetalleRepository repo;
+    PerfilRepository repo;
 
-    public VentaDetalle save(VentaDetalle to) {
+    public Perfil save(Perfil to) {
         return repo.save(to);
     }
 
-    public List<VentaDetalle> list() {
+    public List<Perfil> list() {
         return repo.findAll();
     }
 
-    public VentaDetalle update(VentaDetalle to, Long id) {
+    public Perfil update(Perfil to, Long id) {
         try {
-            VentaDetalle toe = repo.findById(id).orElse(null);
+            Perfil toe = repo.findById(id).orElse(null);
             if (toe != null) {
-                toe.setCantidad(to.getCantidad());
+                toe.setNombre(to.getNombre());
                 return repo.save(toe);
             }
         } catch (Exception e) {
@@ -39,7 +37,7 @@ public class VentaDetalleService {
         repo.deleteById(id);
     }
 
-    public VentaDetalle searchById(Long id) {
+    public Perfil searchById(Long id) {
         return repo.findById(id).orElse(null);
     }
 }
